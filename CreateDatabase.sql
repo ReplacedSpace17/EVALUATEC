@@ -5,7 +5,8 @@ USE EVALUATEC;
 -- Create table Materias
 CREATE TABLE Materias (
   ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  -- Auto-incrementing ID
-  Nombre VARCHAR(255) NOT NULL
+  Nombre VARCHAR(255) NOT NULL,
+  Creditos INT
 );
 
 -- Create table Docente
@@ -15,6 +16,7 @@ CREATE TABLE Docente (
   ApPaterno VARCHAR(255) NOT NULL,
   ApMaterno VARCHAR(255) NOT NULL,
   GradoEstudio VARCHAR(255),
+  Email VARCHAR(255) NOT NULL UNIQUE,
   Foto VARCHAR(255)
 );
 
@@ -58,4 +60,16 @@ CREATE TABLE Pertenecen (
   ID_DEPARTAMENTO INT NOT NULL,
   FOREIGN KEY (ID_DOCENTE) REFERENCES Docente(ID),
   FOREIGN KEY (ID_DEPARTAMENTO) REFERENCES Departamento(ID)
+);
+
+
+-- Create table Tendedero
+CREATE TABLE Tendedero (
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,  -- Auto-incrementing ID
+  ID_ALUMNO INT NOT NULL,
+  ID_DOCENTE INT NOT NULL,
+  Confesion TEXT,
+  Fecha DATE,
+  FOREIGN KEY (ID_ALUMNO) REFERENCES Alumno(ID),
+  FOREIGN KEY (ID_DOCENTE) REFERENCES Docente(ID)
 );
